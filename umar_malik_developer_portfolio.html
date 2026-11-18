@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Umar Malik | Computer Science &amp; Software Engineering</title>
+  <meta
+    name="description"
+    content="Portfolio of Umar Malik — Second-year Honors Computer Science student at Toronto Metropolitan University building full-stack web apps, accessible interfaces, and data-driven software systems."
+  />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Design Tokens & Editorial Grid Texture -->
+  <style>
+    :root {
+      --bg: #0D1117;
+      --surface: #161B22;
+      --border: #262C36;
+      --text: #F0F6FC;
+      --muted: #8B949E;
+      --accent: #10B981;
+      --accent-soft: rgba(16, 185, 129, 0.12);
+      --grid-line: rgba(139, 148, 158, 0.08);
+    }
+
+    html.light {
+      --bg: #FAFAF9;
+      --surface: #FFFFFF;
+      --border: #E5E7EB;
+      --text: #111827;
+      --muted: #4B5563;
+      --accent: #059669;
+      --accent-soft: rgba(5, 150, 105, 0.10);
+      --grid-line: rgba(17, 24, 39, 0.05);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .hero-grid {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased overflow-x-hidden selection:bg-emerald-500/25">
+
+  <!-- =================================================================== -->
+  <!-- HEADER & NAVIGATION                                                 -->
+  <!-- =================================================================== -->
+  <header class="sticky top-0 z-40 border-b border-[var(--border)] bg-[var(--bg)]/90 backdrop-blur-md">
+    <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+      <a href="#" class="flex items-center gap-2.5 font-mono text-sm font-semibold tracking-tight">
+        <span class="inline-block h-2.5 w-2.5 rounded-full bg-[var(--accent)]"></span>
+        <span>umar.malik</span>
+      </a>
+
+      <nav aria-label="Primary" class="flex items-center gap-1 sm:gap-2">
+        <a href="#projects" class="rounded-lg px-2.5 py-2 text-xs sm:text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors">
+          Projects
+        </a>
+        <a href="#experience" class="rounded-lg px-2.5 py-2 text-xs sm:text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors">
+          Experience
+        </a>
+        <a href="#skills" class="rounded-lg px-2.5 py-2 text-xs sm:text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors">
+          Skills
+        </a>
+        <a href="#contact" class="rounded-lg px-2.5 py-2 text-xs sm:text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors">
+          Contact
+        </a>
+
+        <!-- Subtle Dark / Light Mode Toggle -->
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          class="ml-1 flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+        >
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="icon-sun" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="icon-moon" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =================================================================== -->
+    <!-- HERO SECTION                                                        -->
+    <!-- =================================================================== -->
+    <section class="hero-grid border-b border-[var(--border)]">
+      <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
+        <!-- Coordinate & Availability Strip -->
+        <div class="mb-6 flex flex-wrap items-center gap-3">
+          <span class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-medium text-[var(--text)]">
+            <span class="h-2 w-2 rounded-full bg-[var(--accent)]"></span>
+            Open to 2027 Co-op &amp; Internship Roles • Toronto / GTA
+          </span>
+          <span class="font-mono text-xs text-[var(--muted)]">
+            43.6532° N, 79.3832° W
+          </span>
+        </div>
+
+        <h1 class="text-3xl font-bold tracking-tight sm:text-5xl">
+          Umar Malik
+        </h1>
+        <p class="mt-2 font-mono text-base font-medium text-[var(--accent)] sm:text-lg">
+          Computer Science Student at Toronto Metropolitan University
+        </p>
+
+        <p class="mt-5 max-w-2xl text-base leading-relaxed text-[var(--muted)] sm:text-lg">
+          Second-year Honors CS student (3.5 GPA) in Toronto building full-stack web applications,
+          accessible interfaces, and data-driven software systems.
+        </p>
+
+        <!-- Primary Action & Direct Profile Links -->
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href="#projects"
+            class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-slate-950 hover:opacity-90 transition-opacity"
+          >
+            <span>View Selected Work</span>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10"></path>
+              <path d="M7 17 17 7"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://github.com/umarmal1k"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/umar-mal1k/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+
+          <button
+            type="button"
+            data-copy-email
+            class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+          >
+            <svg class="h-4 w-4 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+            </svg>
+            <span class="copy-email-text">malik0umar168@gmail.com</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 01 / SELECTED PROJECTS                                              -->
+    <!-- =================================================================== -->
+    <section id="projects" class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 scroll-mt-16">
+      <div class="mb-10">
+        <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent)]">01 / Projects</p>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Selected Engineering Work</h2>
+        <p class="mt-2 text-sm text-[var(--muted)] sm:text-base">
+          Systems built across full-stack web development, spatial data simulation, and autonomous robotics.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Project 1: MemoryKiosk -->
+        <article class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <span class="inline-block rounded-lg bg-[var(--accent-soft)] px-2.5 py-1 font-mono text-xs font-medium text-[var(--accent)]">
+                In Progress • Full-Stack &amp; Accessibility
+              </span>
+              <h3 class="mt-3 text-xl font-bold sm:text-2xl">MemoryKiosk</h3>
+            </div>
+
+            <button
+              type="button"
+              data-arch="memorykiosk"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-xs font-semibold text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+            >
+              <svg class="h-4 w-4 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <path d="M8 21h8M12 17v4"></path>
+              </svg>
+              <span>Inspect Architecture</span>
+            </button>
+          </div>
+
+          <p class="mt-3 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+            Full-stack memory care platform displaying interactive family trees, timelines, daily schedules,
+            weather, and orientation cues for individuals with memory loss.
+          </p>
+
+          <ul class="mt-5 space-y-2 text-sm text-[var(--text)]/90">
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Designed a relational PostgreSQL schema with Prisma ORM to model family tree connections and timeline memories.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Configured an AWS S3 cloud storage pipeline and Web Audio API integration for family photo uploads and voice note playback.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Built a password-protected caregiver admin dashboard with Role-Based Access Control (RBAC) for remote schedule and media management.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Engineered WCAG AAA accessibility compliance using high-contrast themes, 60px+ touch targets, and a custom idle-timer hook for an auto-advancing slideshow.</span>
+            </li>
+          </ul>
+
+          <div class="mt-6 flex flex-wrap gap-2 border-t border-[var(--border)] pt-5">
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">React</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Next.js</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">TypeScript</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">PostgreSQL</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Prisma ORM</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">AWS S3</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Tailwind CSS</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Web Audio API</span>
+          </div>
+        </article>
+
+        <!-- Project 2: Telecom Billing & Spatial Map Visualizer -->
+        <article class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <span class="inline-block rounded-lg bg-[var(--accent-soft)] px-2.5 py-1 font-mono text-xs font-medium text-[var(--accent)]">
+                Python &amp; Algorithms
+              </span>
+              <h3 class="mt-3 text-xl font-bold sm:text-2xl">Telecom Billing &amp; Spatial Map Visualizer</h3>
+            </div>
+
+            <button
+              type="button"
+              data-arch="telecom"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-xs font-semibold text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+            >
+              <svg class="h-4 w-4 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <path d="M8 21h8M12 17v4"></path>
+              </svg>
+              <span>Inspect Architecture</span>
+            </button>
+          </div>
+
+          <p class="mt-3 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+            Object-oriented Python simulation framework and spatial visualizer modeling cellular call activity
+            and routing across Toronto map coordinates.
+          </p>
+
+          <ul class="mt-5 space-y-2 text-sm text-[var(--text)]/90">
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Architected an OOP simulation framework using abstract class inheritance structures to model cellular call events and spatial routing.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Implemented custom filter algorithms to query JSON event logs by location coordinates, call duration, and customer ID.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Built a Pytest unit test suite to verify core billing logic and rendered live call activity across a Toronto coordinate map in Pygame.</span>
+            </li>
+          </ul>
+
+          <div class="mt-6 flex flex-wrap gap-2 border-t border-[var(--border)] pt-5">
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Python</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Pygame</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">OOP</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">JSON</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Pytest</span>
+          </div>
+        </article>
+
+        <!-- Project 3: Autonomous Robot Control Software — FRC Team 6070 -->
+        <article class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <span class="inline-block rounded-lg bg-[var(--accent-soft)] px-2.5 py-1 font-mono text-xs font-medium text-[var(--accent)]">
+                Robotics &amp; Embedded Systems
+              </span>
+              <h3 class="mt-3 text-xl font-bold sm:text-2xl">Autonomous Robot Control Software — FRC Team 6070</h3>
+            </div>
+
+            <button
+              type="button"
+              data-arch="robotics"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-xs font-semibold text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+            >
+              <svg class="h-4 w-4 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <path d="M8 21h8M12 17v4"></path>
+              </svg>
+              <span>Inspect Architecture</span>
+            </button>
+          </div>
+
+          <p class="mt-3 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+            Competition robot control software and closed-loop autonomous navigation routines engineered
+            for FIRST Robotics Team 6070.
+          </p>
+
+          <ul class="mt-5 space-y-2 text-sm text-[var(--text)]/90">
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Engineered closed-loop PID control algorithms and multi-step autonomous scoring routines using PathPlanner and odometry/gyroscope sensor feedback.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Debugged real-time hardware-software integration across CAN bus motor controllers (TalonFX/SPARK MAX) and pneumatics via telemetry dashboards.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+              <span>Coordinated an 8-developer subteam using Git/GitHub feature-branch workflows and code reviews to integrate drivetrain and subsystem modules.</span>
+            </li>
+          </ul>
+
+          <div class="mt-6 flex flex-wrap gap-2 border-t border-[var(--border)] pt-5">
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Java</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">WPILib</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">PathPlanner</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">PID Control</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">CAN Bus</span>
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2.5 py-1 font-mono text-xs text-[var(--muted)]">Git/GitHub</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 02 / EXPERIENCE                                                     -->
+    <!-- =================================================================== -->
+    <section id="experience" class="border-t border-[var(--border)]">
+      <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 scroll-mt-16">
+        <div class="mb-10">
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent)]">02 / Experience</p>
+          <h2 class="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Leadership &amp; Work History</h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Role 1 -->
+          <article class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-7">
+            <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
+              <div>
+                <h3 class="text-lg font-bold">Robotics Programming Lead</h3>
+                <p class="text-sm font-medium text-[var(--accent)]">FIRST Robotics - Team 6070</p>
+              </div>
+              <div class="font-mono text-xs text-[var(--muted)] sm:text-right">
+                <p>Sept 2022 – Jun 2024</p>
+                <p>Mississauga, Canada</p>
+              </div>
+            </div>
+
+            <ul class="mt-4 space-y-2 text-sm text-[var(--text)]/90">
+              <li class="flex items-start gap-2.5">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+                <span>Led robot control software development in Java (WPILib) across an 8-developer team using Git/GitHub feature branches and code reviews.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+                <span>Built closed-loop PID control and autonomous routines with PathPlanner, odometry, and gyroscope feedback, debugging CAN bus hardware via telemetry dashboards.</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Role 2 -->
+          <article class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-7">
+            <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
+              <div>
+                <h3 class="text-lg font-bold">Team Member</h3>
+                <p class="text-sm font-medium text-[var(--accent)]">KFC</p>
+              </div>
+              <div class="font-mono text-xs text-[var(--muted)] sm:text-right">
+                <p>June 2025 – Sept 2026</p>
+                <p>Mississauga, Canada</p>
+              </div>
+            </div>
+
+            <ul class="mt-4 space-y-2 text-sm text-[var(--text)]/90">
+              <li class="flex items-start gap-2.5">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+                <span>Delivered reliable customer service and rapid order processing in a high-volume environment while managing cash, inventory counts, and cross-station operations.</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 03 / SKILLS & EDUCATION                                             -->
+    <!-- =================================================================== -->
+    <section id="skills" class="border-t border-[var(--border)]">
+      <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 scroll-mt-16">
+        <div class="mb-10">
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent)]">03 / Skills &amp; Education</p>
+          <h2 class="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Technical Toolkit &amp; Academics</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          <!-- Left: Technical Skills (7 cols) -->
+          <div class="space-y-5 lg:col-span-7">
+            <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+              <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                Languages
+              </h3>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Python</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Java</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">TypeScript</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">JavaScript</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">C</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">SQL</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Bash</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">HTML/CSS</span>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+              <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                Frameworks &amp; Libraries
+              </h3>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">React</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Node.js</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Next.js</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Pygame</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Pytest</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Tailwind CSS</span>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+              <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                Databases &amp; Developer Tools
+              </h3>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">PostgreSQL</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Prisma ORM</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">AWS S3</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Linux</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">Git</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">GitHub</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">REST APIs</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">JWT</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">VS Code</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">PyCharm</span>
+                <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1 font-mono text-xs">VMware</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Education (5 cols) -->
+          <div class="space-y-5 lg:col-span-5">
+            <article class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+              <span class="inline-block rounded-lg bg-[var(--accent-soft)] px-2.5 py-1 font-mono text-xs font-medium text-[var(--accent)]">
+                3.5 GPA
+              </span>
+              <h3 class="mt-3 text-lg font-bold">Toronto Metropolitan University (TMU)</h3>
+              <p class="mt-1 text-sm text-[var(--text)]/90">
+                Honors Bachelor of Science, Computer Science
+              </p>
+              <p class="mt-3 font-mono text-xs text-[var(--muted)]">
+                Sept 2025 – Apr 2029 • Toronto, Canada
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+              <h3 class="text-lg font-bold">Glenforest Secondary School</h3>
+              <p class="mt-1 text-sm text-[var(--text)]/90">
+                High School Diploma
+              </p>
+              <p class="mt-3 font-mono text-xs text-[var(--muted)]">
+                Sept 2020 – Jun 2024 • Mississauga, Canada
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 04 / CONTACT                                                        -->
+    <!-- =================================================================== -->
+    <section id="contact" class="border-t border-[var(--border)]">
+      <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 scroll-mt-16">
+        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10">
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent)]">04 / Contact</p>
+          <h2 class="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Let’s Connect</h2>
+          <p class="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+            I’m currently seeking 2027 Software Engineering, Full-Stack, or Data Co-op roles in Toronto,
+            the GTA, or remote. Reach out directly via email, phone, or LinkedIn.
+          </p>
+
+          <div class="mt-7 flex flex-wrap items-center gap-3">
+            <a
+              href="mailto:malik0umar168@gmail.com"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-slate-950 hover:opacity-90 transition-opacity"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>malik0umar168@gmail.com</span>
+            </a>
+
+            <button
+              type="button"
+              data-copy-email
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+            >
+              <svg class="h-4 w-4 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+              </svg>
+              <span class="copy-email-text">Copy Email</span>
+            </button>
+
+            <a
+              href="tel:437-937-7447"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 font-mono text-xs sm:text-sm text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+            >
+              437-937-7447
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/umar-mal1k/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+            >
+              LinkedIn
+            </a>
+
+            <a
+              href="https://github.com/umarmal1k"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================== -->
+  <!-- FOOTER                                                              -->
+  <!-- =================================================================== -->
+  <footer class="border-t border-[var(--border)]">
+    <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-4 py-8 text-xs text-[var(--muted)] sm:flex-row sm:px-6">
+      <p>Umar Malik • Toronto, Ontario</p>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/umarmal1k" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--text)]">GitHub</a>
+        <a href="https://www.linkedin.com/in/umar-mal1k/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--text)]">LinkedIn</a>
+        <a href="mailto:malik0umar168@gmail.com" class="hover:text-[var(--text)]">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =================================================================== -->
+  <!-- ARCHITECTURE & TECHNICAL BREAKDOWN MODAL                            -->
+  <!-- =================================================================== -->
+  <div
+    id="arch-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="arch-title"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-xs"
+  >
+    <div class="w-full max-w-2xl rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-2xl sm:p-8">
+      <div class="flex items-start justify-between gap-4 border-b border-[var(--border)] pb-4">
+        <div>
+          <span id="arch-badge" class="font-mono text-xs text-[var(--accent)]"></span>
+          <h3 id="arch-title" class="mt-1 text-xl font-bold"></h3>
+        </div>
+        <button
+          id="arch-close"
+          type="button"
+          aria-label="Close technical breakdown"
+          class="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg)] text-[var(--muted)] hover:text-[var(--text)]"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mt-5 space-y-5">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Data &amp; Control Flow</p>
+          <div id="arch-steps" class="mt-2.5 flex flex-wrap items-center gap-2"></div>
+        </div>
+
+        <div>
+          <p class="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Engineering Decisions</p>
+          <ul id="arch-notes" class="mt-2.5 space-y-2 text-sm text-[var(--text)]/90"></ul>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3 border-t border-[var(--border)] pt-4">
+        <a
+          href="https://github.com/umarmal1k"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[var(--accent)] px-4 py-2 text-xs font-semibold text-slate-950 hover:opacity-90"
+        >
+          <span>View GitHub Profile</span>
+          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 7h10v10M7 17 17 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================================================== -->
+  <!-- MINIMAL VANILLA JAVASCRIPT                                          -->
+  <!-- =================================================================== -->
+  <script>
+    const ARCHITECTURES = {
+      memorykiosk: {
+        badge: 'System Architecture • MemoryKiosk',
+        title: 'MemoryKiosk Data & Media Pipeline',
+        steps: [
+          'Caregiver Dashboard (RBAC)',
+          'Next.js API & Prisma ORM',
+          'PostgreSQL + AWS S3 Media Pipeline',
+          'WCAG AAA Kiosk Display & Web Audio',
+        ],
+        notes: [
+          'Decouples a zero-click, read-only patient display from a password-protected caregiver admin dashboard via Role-Based Access Control.',
+          'Models relational family tree links, timeline events, and daily schedules in PostgreSQL using Prisma ORM.',
+          'Streams uploaded family photos and Web Audio API voice notes from AWS S3 while keeping the kiosk UI compliant with WCAG AAA contrast and 60px+ touch targets.',
+        ],
+      },
+      telecom: {
+        badge: 'System Architecture • Python Simulation',
+        title: 'Telecom Billing & Spatial Map Visualizer',
+        steps: [
+          'JSON Call Event Logs',
+          'OOP Abstract Class Hierarchy',
+          'Custom Query & Billing Engine (Pytest)',
+          'Pygame Toronto Spatial Map',
+        ],
+        notes: [
+          'Structures cellular contracts, billing tiers, and call events through abstract base classes and inheritance.',
+          'Filters high-volume JSON event logs by Toronto geographic bounds, call duration, and customer ID.',
+          'Validates billing calculations with Pytest unit tests before plotting spatial call activity onto an interactive Pygame coordinate map.',
+        ],
+      },
+      robotics: {
+        badge: 'System Architecture • FRC Team 6070',
+        title: 'Autonomous Robot Control Software',
+        steps: [
+          'Odometry & Gyro Sensors',
+          'Closed-Loop PID & PathPlanner',
+          'WPILib Subsystem Modules',
+          'CAN Bus Controllers & Telemetry',
+        ],
+        notes: [
+          'Fuses wheel odometry and gyroscope heading feedback with closed-loop PID controllers for deterministic autonomous paths.',
+          'Isolates drivetrain and scoring mechanisms into modular WPILib subsystems integrated via Git/GitHub feature branches.',
+          'Monitors CAN bus motor controllers (TalonFX/SPARK MAX) and pneumatics in real time through live telemetry dashboards.',
+        ],
+      },
+    };
+
+    // 1. Dark / Light Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.documentElement.classList.toggle('light');
+      iconSun.classList.toggle('hidden', isLight);
+      iconMoon.classList.toggle('hidden', !isLight);
+    });
+
+    // 2. Architecture Breakdown Modal
+    const modal = document.getElementById('arch-modal');
+    const closeModal = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    };
+
+    document.querySelectorAll('[data-arch]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const data = ARCHITECTURES[btn.dataset.arch];
+        if (!data) return;
+        document.getElementById('arch-badge').textContent = data.badge;
+        document.getElementById('arch-title').textContent = data.title;
+        document.getElementById('arch-steps').innerHTML = data.steps
+          .map((step, i) => `
+            <span class="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 font-mono text-xs">${step}</span>
+            ${i < data.steps.length - 1 ? '<span class="font-mono text-xs text-[var(--accent)]">→</span>' : ''}
+          `)
+          .join('');
+        document.getElementById('arch-notes').innerHTML = data.notes
+          .map((note) => `<li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"></span><span>${note}</span></li>`)
+          .join('');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    });
+
+    document.getElementById('arch-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    // 3. One-Click Email Copy
+    document.querySelectorAll('[data-copy-email]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const input = document.createElement('textarea');
+        input.value = 'malik0umar168@gmail.com';
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+
+        const label = btn.querySelector('.copy-email-text');
+        const original = label.textContent;
+        label.textContent = 'Copied to clipboard';
+        setTimeout(() => { label.textContent = original; }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
